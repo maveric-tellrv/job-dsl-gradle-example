@@ -31,6 +31,23 @@ for (version in RHEL)
             steps {
                 shell 'scp war file; restart...'
             }
+
+            configure { Node project ->
+                project / triggers /'com.redhat.jenkins.plugins.ci.CIBuildTrigger plugin="jms-messaging@1.1.4"'{
+                    spec {}
+                    noSquash false
+                    providerData(Class: "com.redhat.jenkins.plugins.ci.provider.data.ActiveMQSubscriberProviderData")
+                            {
+                                name ("Red Hat UMB")
+                                overrides
+                                        {
+                                            topic("Consumer.rh-jenkins-ci-plugin.54f6dd04-37c9-47d9-b1c8-7a57f686f1dd.VirtualTopic.eng.brew.build.complete")
+                                        }
+                                selector("name = &apos;redhat-certification&apos; AND release LIKE  &apos;%el8&apos;")
+                                checks {}
+                            }
+                }
+            }
         }
     }
 }
