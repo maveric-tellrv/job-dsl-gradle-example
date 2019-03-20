@@ -33,7 +33,7 @@ for (version in RHEL)
             }
 
             configure { Node project ->
-                project / triggers /'com.redhat.jenkins.plugins.ci.CIBuildTrigger plugin="jms-messaging@1.1.4"'{
+                project / triggers /'com.redhat.jenkins.plugins.ci.CIBuildTrigger'{
                     spec {}
                     noSquash false
                     providerData(Class: "com.redhat.jenkins.plugins.ci.provider.data.ActiveMQSubscriberProviderData")
