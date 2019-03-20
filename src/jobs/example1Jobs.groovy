@@ -52,6 +52,9 @@ for (version in RHEL)
             steps {
                 shell readFileFromWorkspace('src/scripts/hardware_gui_conf.sh')
             }
+            publishers {
+                archiveJunit('reports/*.xml')
+            }
 
             configure { Node project ->
                 project / triggers /'com.redhat.jenkins.plugins.ci.CIBuildTrigger'{
