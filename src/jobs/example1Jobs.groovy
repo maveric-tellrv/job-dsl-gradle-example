@@ -20,8 +20,20 @@ for (version in RHEL)
         job("$basePath/Hardware-spicegate-gui-$version-$arch") {
 
             parameters {
+                stringParam('SUT_HOST','','Add a sut host to test')
+                stringParam('rhcertuser','linux-certs-dell','define certification user')
+                stringParam('rhcertpass','redhat','certification user password')
+                stringParam('ansible_user_LTS','root','LTS user to logn machine')
+                stringParam('ansible_user_LTS_password','redhat','Password for SUT machine')
+                stringParam('pass','cert-qe123*','SUT password')
+                stringParam('rhel_version','7.4','Rhel version for certificate')
+                stringParam('platform',arch,'Certifcate architecture')
+                stringParam('vendor','Dell (ID: 1)','vendor information')
                 booleanParam('clean_rhcert_store', true,'Clean all the cert test')
                 choiceParam('Test', ['hwcert_certificate (default)', 'All', 'hardware-profiler'],'Select the test to Run')
+                choiceParam('Packages',['rhcert_backend_hardware (default)','rhcertwebui_backend'],'packages to install')
+                choiceParam('test_env',['hydrastage','hydraqa','qa','stage'],'test env')
+                choiceParam('Install_OR_uninstall',['install','uninstall','TestRunOnly'],'Install latest rhcert packages')
             }
 
             if ( arch == 'x86_64' ){
