@@ -11,13 +11,16 @@ def ARCH = ['x86_64','ppc-64']
 def JSLAVE_x86 = "RHCERTQE-RHEL_x86_64"
 def JSLAVE_ppc = "RHCERTQE-RHEL_ppc"
 
-def uuid = UUID.randomUUID().toString()
+
 
 for (version in RHEL)
 {
     for (arch in ARCH) {
+        def uuid = UUID.randomUUID().toString()
         job("$basePath/Hardware-spicegate-gui-$version-$arch") {
+
             if ( arch == 'x86_64' ){
+
                 label(JSLAVE_x86)
             }else{
                 label(JSLAVE_ppc)
