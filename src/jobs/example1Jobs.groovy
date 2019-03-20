@@ -11,6 +11,7 @@ def ARCH = ['x86_64','ppc-64']
 def JSLAVE_x86 = "RHCERTQE-RHEL_x86_64"
 def JSLAVE_ppc = "RHCERTQE-RHEL_ppc"
 
+def uuid = UUID.randomUUID().toString()
 
 for (version in RHEL)
 {
@@ -25,7 +26,9 @@ for (version in RHEL)
             scm {
                 git repo
             }
-            
+            triggers {
+                scm 'H/5 * * * *'
+            }
             steps {
                 shell 'scp war file; restart...'
             }
@@ -39,7 +42,7 @@ for (version in RHEL)
                                 name ("Red Hat UMB")
                                 overrides
                                         {
-                                            topic("Consumer.rh-jenkins-ci-plugin.54f6dd04-37c9-47d9-b1c8-7a57f686f1dd.VirtualTopic.eng.brew.build.complete")
+                                            topic("Consumer.rh-jenkins-ci-plugin."+uuid+".VirtualTopic.eng.brew.build.complete")
                                         }
                                 selector("name = &apos;redhat-certification&apos; AND release LIKE  &apos;%el8&apos;")
                                 checks {}
