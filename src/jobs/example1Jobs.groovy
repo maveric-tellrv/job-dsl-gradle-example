@@ -19,6 +19,11 @@ for (version in RHEL)
         def uuid = UUID.randomUUID().toString()
         job("$basePath/Hardware-spicegate-gui-$version-$arch") {
 
+            parameters {
+                booleanParam('clean_rhcert_store', true)
+                choiceParam('Test', ['hwcert_certificate (default)', 'All', 'hardware-profiler'])
+            }
+
             if ( arch == 'x86_64' ){
 
                 label(JSLAVE_x86)
