@@ -47,7 +47,7 @@ for (version in RHEL)
                 git repo
             }
             triggers {
-                scm 'H/5 * * * *'
+                scm 'H H(0-12) * * *'
             }
             steps {
                 shell 'scp war file; restart...'
