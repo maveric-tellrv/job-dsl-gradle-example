@@ -16,7 +16,7 @@ for (version in RHEL)
 {
     for (arch in ARCH) {
         job("$basePath/Hardware-spicegate-gui-$version-$arch") {
-            if ( $arch == 'x86_64' ){
+            if ( arch == 'x86_64' ){
                 label($JSLAVE_x86)
             }else{
                 label($JSLAVE_ppc)
