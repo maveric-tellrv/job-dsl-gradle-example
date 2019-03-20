@@ -16,7 +16,7 @@ for (version in RHEL)
         job("$basePath/Hardware-spicegate-gui-$version-$arch") {
             label('node1')
             scm {
-                github repo
+                git repo
             }
             triggers {
                 scm 'H/5 * * * *'
