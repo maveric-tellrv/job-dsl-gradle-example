@@ -54,8 +54,17 @@ for (version in RHEL)
             }
             publishers {
                 archiveJunit('reports/*.xml')
+                extendedEmail {
+                    recipientList('rhcert-reports@redhat.com')
+                    defaultSubject('''Spicegate Hardware QA Automation  -${BUILD_NUMBER}+${SUT_HOST}''')
+                    defaultContent('''http://certqe-jenkins.gsslab.pnq.redhat.com/job/Spicegate_Hardware_HYDRAQA_ENV/${BUILD_NUMBER}/allure/''')
+                    contentType('text/html')
+                    triggers {
+                        always()
+                    }
+                }
             }
-
+            
             configure { Node project ->
                 project / triggers /'com.redhat.jenkins.plugins.ci.CIBuildTrigger'{
                     spec {}
