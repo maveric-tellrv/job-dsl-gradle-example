@@ -40,14 +40,14 @@ for (version in RHEL)
                 project / triggers /'com.redhat.jenkins.plugins.ci.CIBuildTrigger'{
                     spec {}
                     noSquash false
-                    providerData(Class: "com.redhat.jenkins.plugins.ci.provider.data.ActiveMQSubscriberProviderData")
+                    providerData(class: "com.redhat.jenkins.plugins.ci.provider.data.ActiveMQSubscriberProviderData")
                             {
                                 name ("Red Hat UMB")
                                 overrides
                                         {
                                             topic("Consumer.rh-jenkins-ci-plugin."+uuid+".VirtualTopic.eng.brew.build.complete")
                                         }
-                                selector("name = &apos;redhat-certification&apos; AND release LIKE  &apos;%el8&apos;")
+                                selector("name = 'redhat-certification' AND release LIKE  '%el8'")
                                 checks {}
                             }
                 }
