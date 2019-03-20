@@ -20,8 +20,8 @@ for (version in RHEL)
         job("$basePath/Hardware-spicegate-gui-$version-$arch") {
 
             parameters {
-                booleanParam('clean_rhcert_store', true)
-                choiceParam('Test', ['hwcert_certificate (default)', 'All', 'hardware-profiler'])
+                booleanParam('clean_rhcert_store', true,'Clean all the cert test')
+                choiceParam('Test', ['hwcert_certificate (default)', 'All', 'hardware-profiler'],'Select the test to Run')
             }
 
             if ( arch == 'x86_64' ){
