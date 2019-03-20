@@ -8,8 +8,8 @@ folder(basePath) {
 
 def RHEL = ['7.x','8.x']
 def ARCH = ['x86_64','ppc-64']
-def JSLAVE_x86 = 'RHCERTQE-RHEL_x86_64'
-def JSLAVE_ppc = 'RHCERTQE-RHEL_ppc'
+def JSLAVE_x86 = "RHCERTQE-RHEL_x86_64"
+def JSLAVE_ppc = "RHCERTQE-RHEL_ppc"
 
 
 for (version in RHEL)
@@ -17,9 +17,9 @@ for (version in RHEL)
     for (arch in ARCH) {
         job("$basePath/Hardware-spicegate-gui-$version-$arch") {
             if ( arch == 'x86_64' ){
-                label($JSLAVE_x86)
+                label(JSLAVE_x86)
             }else{
-                label($JSLAVE_ppc)
+                label(JSLAVE_ppc)
             }
 
             scm {
