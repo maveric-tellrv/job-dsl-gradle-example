@@ -50,7 +50,7 @@ for (version in RHEL)
                 scm 'H H(0-12) * * *'
             }
             steps {
-                shell 'scp war file; restart...'
+                shell readFileFromWorkspace('src/scripts/hardware_gui_conf.sh')
             }
 
             configure { Node project ->
